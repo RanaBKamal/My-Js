@@ -1,0 +1,87 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<title>Slider 1</title>
+</head>
+<body>
+<div class="slider">
+	<div class="sliderLong">
+		<img src="images/img1.png" alt="" />
+		<img src="images/img2.png" alt="" />
+		<img src="images/img3.png" alt="" />
+    <img src="images/img4.png" alt="" />
+	</div>
+  <div id="leftArrow"></div>
+  <div id="rightArrow"></div>
+	<div id="navDiv"></div>
+</div>
+
+<script type="text/javascript" src="animator.js"></script>
+<script type="text/javascript" src="navigator.js"></script>
+<script>
+  //extracting the property of the image numbers
+	var imgWidth = 900;
+	var active = 1;
+	var slider = document.getElementsByClassName("sliderLong")[0];
+	var sliderLong = slider.children[0];
+	var slides = slider.children;
+
+  //here is the left click function
+  var leftclick = document.getElementById("leftArrow");
+  leftclick.onclick = function() {leftClickFunction()};
+  function leftClickFunction(){
+    showNextImage();
+    console.log("left clicked:");
+  }
+
+  //here is right click function
+  var rightclick = document.getElementById("rightArrow");
+  rightclick.onclick = function() {rightClickFunction()};
+  function rightClickFunction(){
+    showPreviousImage();
+    console.log("right clicked:");
+  }
+  //navigation function here
+  var navigate = new Navigator();
+  navigate.createNavBar(slides.length);
+
+	function slide(){  
+		active = active == slides.length ? active = 1 : ++active;
+		var ml = (imgWidth * (active-1) * -1);
+		var animator = new Animator(sliderLong);
+		animator.animate("margin-left",ml,1000);
+    var navigate = new Navigator();
+    navigate.changeState(active, slides.length);
+	}
+  setInterval(slide,2000);
+
+
+  //show next slide
+  function showNextImage() { 
+    if (active != 4) {
+      active = active == slides.length ? active = 1 : ++active;
+      var ml = (imgWidth * (active-1) * -1);
+      var animator = new Animator(sliderLong);
+      animator.animate("margin-left",ml,1000);
+      var navigate = new Navigator();
+      navigate.changeState(active, slides.length);
+    }
+  }
+  //function to show the previous image
+  function showPreviousImage(){
+    if (active != 1) {
+      active--;
+      var ml = (imgWidth * (active-1) * -1);
+      var animator = new Animator(sliderLong);
+      animator.animate("margin-left",ml,1000);
+      var navigate = new Navigator();
+      navigate.changeState(active, slides.length);
+    }
+  }
+</script>
+</body>
+</html>
+
+
+
+
