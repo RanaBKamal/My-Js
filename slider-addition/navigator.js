@@ -5,11 +5,12 @@ function Navigator(){
     ul.style.width = '100%';
     ul.style.height = 'auto';
     ul.style['list-style'] ="none";
-
     for (var i = 0; i < numberOfImg; i++) {
       var li1 = document.createElement('li');
       li1.style.float = 'left';
       var div1 = document.createElement('DIV');
+      div1.setAttribute("id","div"+i);
+      div1.addEventListener("click",navigateOnClick(activeState));
       div1.style.width = '20px';
       div1.style.height = '20px';
       if (i == 0) {
@@ -30,7 +31,7 @@ function Navigator(){
     myid.appendChild(ul);
   }
 
-  
+
   //position navigator
   this.changeState = function(pos,length){
     var navbar = document.getElementById("navDiv");
