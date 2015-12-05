@@ -9,7 +9,7 @@
   var leftclick = document.getElementById("leftArrow");
   leftclick.onclick = function() {leftClickFunction()};
   function leftClickFunction(){
-    showNextImage();
+    showPreviousImage();
     console.log("left clicked:");
   }
 
@@ -17,7 +17,7 @@
   var rightclick = document.getElementById("rightArrow");
   rightclick.onclick = function() {rightClickFunction()};
   function rightClickFunction(){
-    showPreviousImage();
+    showNextImage();
     console.log("right clicked:");
   }
   //navigation function here
